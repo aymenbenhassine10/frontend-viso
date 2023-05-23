@@ -1,0 +1,48 @@
+
+
+
+  <div *ngFor="let message of messageList">
+    <li>
+      {{ message }}
+    </li>
+  </div>
+
+  <input [(ngModel)]="roomName"  />
+  <input [(ngModel)]="userName"  />
+
+  <button (click)="doSomthing()">Send Message</button>
+  <br>
+  <button (click)="onStart()">Activate VIDEO</button>
+  <button (click)="onStop()">Stop VIDEO</button>
+
+
+
+
+
+  <div class="videoContainer">
+    <video id="{{userId}}" [srcObject]="mediaStream" autoplay></video>
+    <div *ngFor="let v of myVideos">
+      <video
+        [srcObject]="v.srcObject"
+        (loadedmetadata)="onLoadedMetadata($event)"
+        [muted]="v.muted"
+      >
+      </video>
+    </div>
+    <div>You</div>
+  </div>
+
+  <hr>
+  OTHER PARTICIPANTS :
+
+  <div *ngFor="let v of videos">
+    <video
+           [srcObject]="v.srcObject"
+           (loadedmetadata)="onLoadedMetadata($event)"
+           [muted]="v.muted"
+    >
+    </video>
+    {{v.id}}
+  </div>
+
+
